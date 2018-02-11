@@ -16,6 +16,29 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx']
   },
+  module: {
+    loaders: [
+      {
+        test:/\.(js)$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        query: {
+          presets: ['es2015', 'react']
+        }
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
+      }
+    ]
+  },
 
   plugins: [
     new HtmlWebpackPlugin({
